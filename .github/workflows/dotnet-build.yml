@@ -21,7 +21,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '6.0.200' # versão do .net usada
+          dotnet-version: '8.0.301' # versão do .net usada
 
       - name: Restore dependencies
         run: dotnet restore github4women/*.csproj
