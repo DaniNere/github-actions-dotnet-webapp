@@ -1,0 +1,36 @@
+name: .NET Build
+
+on:
+  push:
+    branches:
+      - main  
+  schedule:
+    - cron: '0 * * * *'  # Agendamento para rodar a cada hora
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '6.x' # versão do .net usada
+
+      - name: Restore dependencies
+        run: dotnet restore github4women/*.csproj
+
+      - name: Build
+        run: dotnet build github4women/*.csproj --no-restore
+
+  
+      # Aqui podemos adicionar mais steps conforme necessário para o seu fluxo
+
+      - name: Publish Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: dotnet-app
+          path: github4women/bin/Release/net6.0/publish
