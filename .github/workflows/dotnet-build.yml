@@ -15,6 +15,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Check .NET SDK version
+        run: dotnet --version  # Exibe a versão do SDK do .NET
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
         with:
@@ -26,8 +29,6 @@ jobs:
       - name: Build
         run: dotnet build github4women/*.csproj --no-restore
 
-  
-      # Aqui podemos adicionar mais steps conforme necessário para o seu fluxo
 
       - name: Publish Artifact
         uses: actions/upload-artifact@v2
